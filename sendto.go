@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/gophergala2016/sendto/client"
 )
@@ -124,7 +125,7 @@ func SendTo(recipient string, args []string) error {
 
 	fmt.Printf("Sending files for %s to %s\n", recipient, postURL)
 
-	err = client.PostData(client.Config["sender"], recipient, dataPath, postURL)
+	err = client.PostData(client.Config["sender"], recipient, filepath.ToSlash(dataPath), postURL)
 	if err != nil {
 		return err
 	}
